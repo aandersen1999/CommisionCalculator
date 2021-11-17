@@ -6,7 +6,64 @@
         xmlns:local="clr-namespace:CommissionCalculator"
         mc:Ignorable="d"
         Title="Commission Calculator" Height="450" Width="800" ResizeMode="CanMinimize">
-    <Grid>
-        
+    <Grid Background="#FF272525">
+
+        <Grid.RowDefinitions>
+            <RowDefinition Height="70"/>
+            <RowDefinition Height="117*"/>
+            <RowDefinition Height="150*"/>
+            <RowDefinition Height="80*"/>
+        </Grid.RowDefinitions>
+
+        <Image Grid.Row="0" Source="Assets/MCLogo.png" HorizontalAlignment="Right" Width="260"/>
+
+        <Label Grid.Row="1" Foreground="White" Content="Item Price" Margin="20,0,0,0"/>
+        <Label Grid.Row="1" Foreground="Gray" Content="$" Margin="20" FontSize="18" FontStyle="Italic" />
+        <TextBox x:Name="ItemPrice" Grid.Row="1" Width="200" Height="30" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="40,23,0,0" FontSize="18"/>
+        <TextBlock x:Name="ErrorMessage" Grid.Row="1" Foreground="Red" VerticalAlignment="Center" Margin="40,76,0,25" Visibility="Hidden" Height="16">
+            <Italic>*Improper Input Value</Italic>
+        </TextBlock>
+        <StackPanel Grid.Row="1" Margin="245,20,471,41">
+            <CheckBox x:Name="OodBox" Content="OOD" Foreground="White" ToolTip="Determines if this item was sold Out of Department"/>
+            <CheckBox x:Name="RpBox" Content="RP" Foreground="White" ToolTip="Determines if this item is sold with a Replacement Plan"/>
+            <CheckBox x:Name="ReturnBox" Content="Return" Foreground="White" ToolTip="Is this item being returned"/>
+        </StackPanel>
+
+        <Button x:Name="AddButton" IsDefault="True" HorizontalAlignment="Center" Grid.Row="1" VerticalAlignment="Center" Width="100" Height="25" Click="Button_Click">
+            Add
+            <Button.ToolTip>Adds Item to the Item List</Button.ToolTip>
+        </Button>
+
+
+        <TextBlock x:Name="SoldText" Grid.Row="1" Foreground="White" VerticalAlignment="Center" Margin="460,34,0,63" FontSize="15" Height="20">
+            Total Sold: $
+        </TextBlock>
+        <TextBlock x:Name="CommText" Grid.Row="1" Foreground="White" VerticalAlignment="Center" Margin="460,48,0,49" FontSize="15" Height="20">
+            Commission Earned: $
+        </TextBlock>
+        <TextBlock x:Name="PlanText" Grid.Row="1" Foreground="White" VerticalAlignment="Center" Margin="460,64,0,33" FontSize="15" Height="20">
+            From Plans: $
+        </TextBlock>
+
+        <ListView Grid.Row="2" Margin="20,20,0,20" Name="CommissionList" HorizontalAlignment="Left" Width="420">
+            <ListView.View>
+                <GridView AllowsColumnReorder="True">
+                    <GridViewColumn Header="ID" Width="50" DisplayMemberBinding="{Binding ID}"/>
+                    <GridViewColumn Header="Price" Width="120" DisplayMemberBinding="{Binding Price}"/>
+                    <GridViewColumn Header="Commission" Width="120" DisplayMemberBinding="{Binding Commission}"/>
+                    <GridViewColumn Header="Replacement Plan" Width="120" DisplayMemberBinding="{Binding ReplacementPrice}"/>
+
+
+                </GridView>
+            </ListView.View>
+        </ListView>
+
+        <TextBlock x:Name="Total" Grid.Row="3" Foreground="White" FontSize="18" VerticalAlignment="Center" Margin="20,17,484,17">
+            Total Made Today: $
+        </TextBlock>
+        <TextBlock x:Name="PerHour" Grid.Row="3" Foreground="White" FontSize="18" VerticalAlignment="Center" Margin="310,17,191,17">
+            Per Hour: $
+        </TextBlock>
+
     </Grid>
 </Window>
